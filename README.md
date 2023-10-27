@@ -14,7 +14,7 @@
     <!-- GitHub Link -->
     <p align="center">
         <a href="https://github.com/jfpalchak">
-            <strong>Joey Palchak</strong>
+            <strong>by Joey Palchak</strong>
         </a>
     </p>
     <!-- Project Shields -->
@@ -113,7 +113,7 @@ Authenticated users have access to `POST`, `PUT`, and `DELETE` functionality thr
 * On Windows:
   * [Click here](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.402-windows-x64-installer) to download the 64-bit .NET Core SDK from Microsoft Corp for Windows.
 
-#### Install dotnet script
+#### Install dotnet-script
  Enter the command ``dotnet tool install -g dotnet-script`` in Terminal for macOS or PowerShell for Windows.
 
 #### Install dotnet-ef
@@ -286,8 +286,8 @@ Until the Token expires, you should now have access to all endpoints requiring u
 CORS is a W3C standard that allows a server to relax the same-origin policy. It is not a security feature, CORS relaxes security. It allows a server to explicitly allow some cross-origin requests while rejecting others. An API is not safer by allowing CORS.
 For more information or to see how CORS functions, see the [Microsoft documentation](https://docs.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-2.2#how-cors). -->
 
-<!-- ### Note on Pagination
-For some endpoints, the ParkLookup Api returns a default of 10 results per page at a time, which is also the maximum number of results possible.
+### Note on Pagination
+For certain endpoints, the ParkLookup Api returns a default of 10 results per page at a time, which is also the maximum number of results possible.
 
 To modify this, use the query parameters `pageSize` and `pageNumber` to alter the response results displayed. The `pageSize` parameter will specify how many results will be displayed, and the `pageNumber` parameter will specify which element in the response the limit should start counting.
 
@@ -296,15 +296,10 @@ To modify this, use the query parameters `pageSize` and `pageNumber` to alter th
 https://localhost:5000/api/groups/1/messages?pageNumber=1&pageSize=2
 ```
 
-To use the defaults, _do not include_ `pageNumber` and `pageSize`, or, set them equal to zero. -->
+To use the defaults, _do not include_ `pageNumber` or `pageSize`.
 
 ### Notes on Adding Search Parameters
-When adding more than one search parameter to an endpoint query, be sure to include an `&` between search parameters, as shown in the following example:
-
-#### Example Query
-```
-https://localhost:5001/api/parks?category=State&location=Oregon
-```
+When adding more than one search parameter to an endpoint query, be sure to include an `&` between search parameters, as shown in the example query on pagination just above.
 
 ------------------------------
 
@@ -353,13 +348,20 @@ Access information on available State and/or National Parks.
 ..........................................................................................
 
 #### `GET` /api/parks
-Any user may access this `GET` endpoint of the API. This endpoint returns a list of every available Park in the database.
+Any user may access this `GET` endpoint of the API. This endpoint returns a paginated list of available Parks in the database.
+
+**NOTE**: By default, this endpoint returns a list of 10 Parks per page, starting from page 1. To continue searching through the available parks, make sure to enter the `pageNumber` parameter to search through each consecutive page available. 
+
+The total number of pages available, as well as reference to the user's position in the available page index as noted by `hasPreviousPage` and `hasNextPage`, will be marked in the body of the initial JSON Response, as show below.
 
 #### Path Parameters
 | Parameter | Type | Default | Required | Description |
 | :---: | :---: | :---: | :---: | --- |
 | category | string | none | false | Return matches by category. **Must** be either 'State' or 'National'.
 | location | string | none | false | Return any Park found in the specified location. |
+| pageNumber | int | 1 | false |  Specifies which element in the response the pageSize limit should start counting from; default is the initial index of available elements. |
+| pageSize | int | 10 | false |  Returns the specified number of elements per response; default is 10 elements.|
+
 
 #### Example Query
 ```
@@ -370,11 +372,23 @@ https://localhost:5001/api/parks?category=State&location=Oregon
 `Status: 200 OK`
 ```json
 {
-  "parkId": 3,
-  "name": "Cape Kiwanda",
-  "location": "Oregon",
-  "description": "This sandstone headland just north of Pacific City offers one of the best viewpoints on the coast for witnessing the ocean's power. The landmark is one of three along the Three Capes Scenic Route (along with Cape Meares and Cape Lookout).",
-  "category": "State Park"
+    "pageNumber": 1,
+    "pageSize": 10,
+    "totalPages": 1,
+    "hasPreviousPage": false,
+    "hasNextPage": false,
+    "data": [
+        {
+            "parkId": 3,
+            "name": "Cape Kiwanda",
+            "location": "Oregon",
+            "description": "This sandstone headland just north of Pacific City offers one of the best viewpoints on the coast for witnessing the ocean's power. The landmark is one of three along the Three Capes Scenic Route (along with Cape Meares and Cape Lookout).",
+            "category": "State Park"
+        }
+    ],
+    "succeeded": true,
+    "errors": null,
+    "message": null
 }
 ```
 ..........................................................................................
