@@ -1,7 +1,7 @@
 <br>
-<p align="center">
-  <u><big>|| <b>ParkLookup Api</b> ||</big></u>
-</p>
+<h1 align="center">
+  <u><big><b>ParkLookup Api</b></big></u>
+</h1>
 <p align="center">
     <!-- Project Avatar/Logo -->
     <!-- <br>
@@ -42,7 +42,7 @@
 </p>
 
 <p align="center">
-  <small>Initiated October 25th, 2023.</small>
+  <small>Initiated October 27th, 2023.</small>
 </p>
 
 <!-- Project Links -->
@@ -54,20 +54,22 @@
 
 ------------------------------
 ### <u>Table of Contents</u>
-* <a href="#🌐-about-the-project">About the Project</a>
-    * <a href="#📖-description">Description</a>
-    * <a href="#🦠-known-bugs">Known Bugs</a>
-    * <a href="#🛠-built-with">Built With</a>
-    <!-- * <a href="#🔍-preview">Preview</a> -->
-* <a href="#🏁-getting-started">Getting Started</a>
-    * <a href="#📋-prerequisites">Prerequisites</a>
-    * <a href="#⚙️-setup-and-use">Setup and Use</a>
-* <a href="#🛰️-api-documentation">API Documentation</a>
-* <a href="#🤝-contributors">Auxiliary</a>
-    * <a href="#🤝-contributors">Contributors</a>
-    * <a href="#✉️-contact-and-support">Contact</a>
-    * <a href="#⚖️-license">License</a>
-    * <a href="#🌟-acknowledgements">Acknowledgements</a>
+* <a href="#-about-the-project">About the Project</a>
+    * <a href="#-description">Description</a>
+    * <a href="#-known-bugs">Known Bugs</a>
+    * <a href="#-technology-used">Built With</a>
+    <!-- * <a href="#-preview">Preview</a> -->
+* <a href="#-getting-started">Getting Started</a>
+    * <a href="#-prerequisites">Prerequisites</a>
+    * <a href="#-setup-and-use">Setup and Use</a>
+* <a href="#-api-documentation">API Documentation</a>
+    * <a href=authentication-authorization-and-using-the-json-web-token">User Authentication & Authorization</a>
+    * <a href="api-endpoints">API Endpoints</a>
+* <a href="#-contributors">Auxiliary</a>
+    * <a href="#-contributors">Contributors</a>
+    * <a href="#-contact-and-support">Contact</a>
+    * <a href="#-license">License</a>
+    * <a href="#-acknowledgements">Acknowledgements</a>
     
 ------------------------------
 
@@ -84,15 +86,16 @@ Authenticated users have access to `POST`, `PUT`, and `DELETE` functionality thr
 * If any bugs are discovered, please contact the author.
 <!-- * This is not a real API, which is the greatest shame of all. -->
 
-### 🛠 Built With
+### 🛠 Technology Used
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [C#](https://docs.microsoft.com/en-us/dotnet/csharp/)
 * [ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-3.1)
 * [MySQL 8.0.34](https://dev.mysql.com/)
 * [Entity Framework Core 6.0.0](https://docs.microsoft.com/en-us/ef/core/)
 * [Entity Framework Core CLI Tools 6.0.0](https://learn.microsoft.com/en-us/ef/core/cli/dotnet)
+* [Entity Framework Core Identity 6.0.0](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity)
+* [Swagger - NSwag 13.3.0](https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-nswag?view=aspnetcore-3.1&tabs=visual-studio)
 * [Postman](https://www.postman.com/)
-<!-- * [Swagger - NSwag 13.3.0](https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-nswag?view=aspnetcore-3.1&tabs=visual-studio) -->
 
 <!-- ### 🔍 Preview -->
 
