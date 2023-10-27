@@ -306,19 +306,19 @@ Base URL: `https://localhost:5000`
 
 | Parks    |                                                                        |
 |  :---:   |                      :---                                              |
-| GET      | <a href="#-`get`-/api/parks"> /api/parks </a>                          |
-| POST     | <a href="#-`post`-/api/parks"> /api/parks </a>                         |  
-| GET      | <a href="#-`get`-/api/parks/{id}"> /api/parks/{id} </a>                |
-| PUT      | <a href="#-`put`-/api/parks/{id}"> /api/parks/{id} </a>                |
-| DELETE   | <a href="#-`delete`-/api/parks/{id}"> /api/parks/{id} </a>             |
+| GET      | <a href="#get-apiparks"> /api/parks </a>                          |
+| POST     | <a href="#post-apiparks"> /api/parks </a>                         |  
+| GET      | <a href="#get-apiparksid"> /api/parks/{id} </a>                |
+| PUT      | <a href="#put-apiparksid"> /api/parks/{id} </a>                |
+| DELETE   | <a href="#delete-apiparksid"> /api/parks/{id} </a>             |
 |          |                                                                        |
-| GET      | <a href="#-`get`-/api/parks/random"> /api/parks/random </a>            |
-| GET      | <a href="#-`get`-/api/parks/search"> /api/parks/search </a>            |
+| GET      | <a href="#get-apiparksrandom"> /api/parks/random </a>            |
+| GET      | <a href="#get-apiparkssearch"> /api/parks/search </a>            |
 
 | Accounts |                                                                        |
 |  :---:   |                      :---                                              |
-| POST     | <a href="#-registration"> /api/accounts/register </a> |  
-| POST     | <a href="#-sign-in"> /api/accounts/signin </a>     |  
+| POST     | <a href="#registration"> /api/accounts/register </a> |  
+| POST     | <a href="#sign-in"> /api/accounts/signin </a>     |  
 
 #### Example Query
 ```
