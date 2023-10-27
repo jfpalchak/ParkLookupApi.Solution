@@ -81,6 +81,10 @@ The ParkLookup API, true to its name, helps users look through lists of both Sta
 
 Authenticated users have access to `POST`, `PUT`, and `DELETE` functionality throughout the API.
 
+Any and all users have access to all available `GET` functionality throughout the API. 
+
+Any endpoint in the API that returns a _list_ of Parks utilizes Pagination. 
+
 ### 🦠 Known Bugs
 
 * If any bugs are discovered, please contact the author.
@@ -114,7 +118,11 @@ Authenticated users have access to `POST`, `PUT`, and `DELETE` functionality thr
   * [Click here](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.402-windows-x64-installer) to download the 64-bit .NET Core SDK from Microsoft Corp for Windows.
 
 #### Install dotnet-script
- Enter the command ``dotnet tool install -g dotnet-script`` in Terminal for macOS or PowerShell for Windows.
+In Terminal for macOS or PowerShell for Windows, enter the following command to install the REPL dotnet-script:
+
+ ```
+ $ dotnet tool install -g dotnet-script
+ ```
 
 #### Install dotnet-ef
 For Entity Framework Core, we'll use a tool called dotnet-ef to reference the project's migrations and update our database accordingly. To install this tool globally, run the following command in your terminal:
@@ -355,9 +363,9 @@ Access information on available State and/or National Parks.
 ### `GET` /api/parks
 Any user may access this `GET` endpoint of the API. This endpoint returns a paginated list of available Parks in the database.
 
-**NOTE**: By default, this endpoint returns a list of 10 Parks per page, starting from page 1. To continue searching through the available parks, make sure to enter the `pageNumber` parameter to search through each consecutive page available. 
+**NOTE**: By default, this endpoint returns a list of 10 Parks per page, starting from page 1. To continue searching through the available parks, make sure to change the `pageNumber` parameter to search through each consecutive page available. 
 
-The total number of pages available, `totalPages`, as well as reference to the user's position in the available page index as noted by `hasPreviousPage` and `hasNextPage`, will be marked in the body of the initial JSON Response, as show below.
+The total number of pages available, `totalPages`, as well as reference to the user's position in the available page index as noted by `hasPreviousPage` and `hasNextPage`, will be marked in the body of the initial JSON Response, as shown below.
 
 #### Path Parameters
 | Parameter | Type | Default | Required | Description |
@@ -538,9 +546,9 @@ https://localhost:5001/api/parks/random
 ### `GET` /api/parks/search
 Any user may access the `Search` endpoint of the API. This endpoint returns a paginated list of Park results that match the content of the user's search parameter.
 
-**NOTE**: By default, this endpoint returns a list of 10 Parks per page, starting from page 1. To continue searching through the query results, make sure to enter the `pageNumber` parameter to search through each consecutive page available. 
+**NOTE**: By default, this endpoint returns a list of 10 Parks per page, starting from page 1. To continue searching through the query results, make sure to change the `pageNumber` parameter to search through each consecutive page available. 
 
-The total number of pages available, `totalPages`, as well as reference to the user's position in the available page index as noted by `hasPreviousPage` and `hasNextPage`, will be marked in the body of the initial JSON Response, as show below.
+The total number of pages available, `totalPages`, as well as reference to the user's position in the available page index as noted by `hasPreviousPage` and `hasNextPage`, will be marked in the body of the initial JSON Response, as shown below.
 
 #### Path Parameters
 | Parameter | Type | Default | Required | Description |
@@ -628,7 +636,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 <!-- ### 🌟 Resources Used
 
 * [Adding Authorization to API with Identity and JWT](https://github.com/CalvinPVIII/asp.net-webapi-auth-guide), by [Calvin Will](https://github.com/CalvinPVIII)
-* [Pagination](https://codewithmukesh.com/blog/pagination-in-aspnet-core-webapi/), by [CodeWithMukesh](https://codewithmukesh.com) -->
+* [Pagination](https://codewithmukesh.com/blog/pagination-in-aspnet-core-webapi/), by [CodeWithMukesh](https://codewithmukesh.com) 
+-->
   
 ------------------------------
 
