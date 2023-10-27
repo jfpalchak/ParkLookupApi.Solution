@@ -77,7 +77,7 @@
 
 The ParkLookup API, true to its name, helps users look through lists of both State and National parks across the United States. This API utilizes RESTful principles, as well as Json Web Tokens (JWT) for authentication & authorization to keep the API Read-Only by default.
 
-Authenticated users have access to POST, PUT, and DELETE functionality throughout the API.
+Authenticated users have access to `POST`, `PUT`, and `DELETE` functionality throughout the API.
 
 ### 🦠 Known Bugs
 
@@ -167,26 +167,26 @@ Or, [Download and install the appropriate version of MySQL Workbench](https://de
   1) Create a new file in the ParkLookupApi project directory named `appsettings.json`
   2) Add in the following code snippet to the new `appsettings.json` file:
   
-  ```
-{
-    "Logging": {
-        "LogLevel": {
-        "Default": "Warning"
-        }
-    },
-    "AllowedHosts": "*",
-    "ConnectionStrings": {
-        "DefaultConnection": "Server=localhost;Port=3306;database=park_lookup_api;uid=[YOUR-USERNAME-HERE];pwd=[YOUR-PASSWORD-HERE];"
-    },
-    "JWT": {
-        "ValidAudience": "example-audience",
-        "ValidIssuer": "example-issuer",
-        "Secret": "[YOUR-SECRET-HERE]"
+  ```json
+  {
+      "Logging": {
+          "LogLevel": {
+          "Default": "Warning"
+          }
+      },
+      "AllowedHosts": "*",
+      "ConnectionStrings": {
+          "DefaultConnection": "Server=localhost;Port=3306;database=park_lookup_api;uid=[YOUR-USERNAME-HERE];pwd=[YOUR-PASSWORD-HERE];"
+      },
+      "JWT": {
+          "ValidAudience": "example-audience",
+          "ValidIssuer": "example-issuer",
+          "Secret": "[YOUR-SECRET-HERE]"
+    }
   }
-}
   ```
   3) Change the server, port, and user id as necessary. Replace `[YOUR-USERNAME-HERE]` and `[YOUR-PASSWORD-HERE]` with your personal MySQL username and password (set at installation of MySQL).
-  4) To properly implement JSON Web Tokens for API authorization, replace `[YOUR-SECRET-HERE]` with your own personalized string.
+  4) In order to properly implement JSON Web Tokens for API authorization, replace `[YOUR-SECRET-HERE]` with your own personalized string.
      1) NOTE: The `Secret` is a special string that will be used to encode our JWTs, to make them unique to our application. Depending on what type of algorithm being used, the Secret string will need to be a certain length. **In this case, it needs to be at least 16 characters long**. 
    
   #### Database
@@ -201,19 +201,19 @@ Or, [Download and install the appropriate version of MySQL Workbench](https://de
 ------------------------------
 
 ## 🛰️ API Documentation
-Explore the API endpoints in Postman or a browser. You will not be able to utilize authentication in a browser.
+Explore the API endpoints in Postman or a browser. However, take note: you will not be able to utilize authentication in a browser.
 
 ### Using Swagger Documentation 
 To explore the ParkLookup Api with NSwag, launch the project using `dotnet run` with the Terminal or Powershell, and input the following URL into your browser: `http://localhost:5000/swagger`
 
-### Using the JSON Web Token
-In order to be authorized to use the POST, PUT, DELETE functionality of the API, please authenticate yourself through Postman.
+### Authentication, Authorization, and Using the JSON Web Token
+In order to be authorized to use the `POST`, `PUT`, and `DELETE` functionality of the API, please authenticate yourself through Postman:
 
 #### Registration
 Again, we'll be using Postman for this example. Let's setup a `POST` request to the `accounts/register` endpoint. Select the 'Body' tab, choose the 'raw' radio button, and select 'JSON' from the dropdown selection.
 
 In the Body of the Post request, use the following format:
-```
+```json
 {
     "email": "email@test.com",
     "userName": "testUser",
@@ -227,9 +227,9 @@ https://localhost:5000/api/accounts/register
 ```
 
 #### Sample JSON Response
-```
+```json
 {
-    "status": "success",
+    "status": "Success",
     "message": "User has been successfully created."
 }
 ```
@@ -246,7 +246,7 @@ Now that we've registered an account with our API, we'll need to authenticate ou
 Let's setup another `POST` request to the `accounts/signin` endpoint. Select the 'Body' tab, choose the 'raw' radio button, and select 'JSON' from the dropdown selection.
 
 In the Body of the Post request, use the following format:
-```
+```json
 {
     "email": "email@test.com",
     "password": "Password123!"
@@ -258,9 +258,9 @@ https://localhost:5000/api/accounts/signin
 ```
 
 #### Sample JSON Response
-```
+```json
 {
-    "status": "success",
+    "status": "Success",
     "message": "email@test.com signed in.",
     "token": "xxxx.xxxx.xxxx"
 }
@@ -276,7 +276,7 @@ Until the Token expires, you should now have access to all endpoints requiring u
 CORS is a W3C standard that allows a server to relax the same-origin policy. It is not a security feature, CORS relaxes security. It allows a server to explicitly allow some cross-origin requests while rejecting others. An API is not safer by allowing CORS.
 For more information or to see how CORS functions, see the [Microsoft documentation](https://docs.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-2.2#how-cors). -->
 
-### Note on Pagination
+<!-- ### Note on Pagination
 For some endpoints, the ParkLookup Api returns a default of 10 results per page at a time, which is also the maximum number of results possible.
 
 To modify this, use the query parameters `pageSize` and `pageNumber` to alter the response results displayed. The `pageSize` parameter will specify how many results will be displayed, and the `pageNumber` parameter will specify which element in the response the limit should start counting.
@@ -286,10 +286,10 @@ To modify this, use the query parameters `pageSize` and `pageNumber` to alter th
 https://localhost:5000/api/groups/1/messages?pageNumber=1&pageSize=2
 ```
 
-To use the defaults, _do not include_ `pageNumber` and `pageSize`, or, set them equal to zero.
+To use the defaults, _do not include_ `pageNumber` and `pageSize`, or, set them equal to zero. -->
 
-### Notes on Adding Search Parameters
-When adding more than one search parameter to an endpoint query, be sure to include an `&` between parameters, as shown above in the example query for pagination.
+<!-- ### Notes on Adding Search Parameters
+When adding more than one search parameter to an endpoint query, be sure to include an `&` between parameters, as shown above in the example query for pagination. -->
 
 
 ..........................................................................................
@@ -308,67 +308,118 @@ DELETE /api/{component}/{id}
 
 #### Example Query
 ```
-https://localhost:5000/api/groups/3
+https://localhost:5000/api/parks/1
 ```
 
 #### Sample JSON Response
-```
+```json
 {
-    "groupId": 3,
-    "name": "Costumes",
-    "messages": [
-        {
-            "messageId": 2,
-            "text": "What did ya'll get for candy? I got rocks.",
-            "date": "2023-03-21T06:30:00",
-            "userId": "abc"
-        }
-    ]
+    "parkId": 1,
+    "name": "Acadia National Park",
+    "location": "Maine",
+    "description": "Today, Acadia preserves about 40,000 acres of Atlantic coast shoreline, mixed hardwood and spruce/fir forest, mountains, and lakes, as well as several offshore islands.",
+    "category": "National Park"
 }
 ```
 
 ..........................................................................................
 
-### Messages
-Access information on messages posted by MessageBoard users.
+### Parks
+Access information on available State and/or National Parks.
 
 #### HTTP Request
 ```
-GET /api/messages
-POST /api/messages
-GET /api/messages/{id}
-PUT /api/messages/{id}
-DELETE /api/messages/{id}
+GET /api/parks
+POST /api/parks
+GET /api/parks/{id}
+PUT /api/parks/{id}
+DELETE /api/parks/{id}
+
+GET /api/parks/random
+GET /api/parks/search
 ```
+..........................................................................................
+
+#### `GET` /api/parks
 
 #### Path Parameters
 | Parameter | Type | Default | Required | Description |
 | :---: | :---: | :---: | :---: | --- |
-| groupId | int | none | false | Return matches by group.
-| dateFrom | string | none | false | Return any message on or after the specified date. |
-| dateTo | string | none | false | Return any message on or before the specified date. |
+| category | string | none | false | Return matches by category. **Must** be either 'State' or 'National'.
+| location | string | none | false | Return any Park found in the specified location. |
 
 #### Example Query
 ```
-https://localhost:5001/api/messages?groupId=1&dateTo=08/2023
+https://localhost:5001/api/parks?category=State&location=Oregon
 ```
 
 #### Sample JSON Response
+`Status: 200 OK`
+```json
+{
+  "parkId": 3,
+  "name": "Cape Kiwanda",
+  "location": "Oregon",
+  "description": "This sandstone headland just north of Pacific City offers one of the best viewpoints on the coast for witnessing the ocean's power. The landmark is one of three along the Three Capes Scenic Route (along with Cape Meares and Cape Lookout).",
+  "category": "State Park"
+}
 ```
-[
-    {
-        "messageId": 1,
-        "text": "This new Spider-Man game looks awesome!",
-        "date": "2022-12-08T08:15:00",
-        "groupId": 1,
-        "userId": "def"
-    }
-]
-```
-<a href="https://ibb.co/X2cRm3g"><img src="https://i.ibb.co/GxzSgtL/Get-With-Token.png" alt="Get-With-Token" border="0" /></a>
+..........................................................................................
+#### `POST` /api/parks
+Authenticated users, while including their Token in the authorization header of the request, may `POST` new Park entries to the database when using the following format:
 
+#### Path Parameters
+No parameters.
+
+#### Example Query
+```
+https://localhost:5001/api/parks
+```
+#### Sample JSON Request Body
+```json
+{
+  "name": "Park Name",
+  "location": "State",
+  "description": "Park Description",
+  "category": "State Park"
+}
+```
+
+#### Sample JSON Response
+`Status: 201 Created`
+```json
+{
+  "parkId": 8,
+  "name": "Park Name",
+  "location": "State",
+  "description": "Park Description",
+  "category": "State Park"
+}
+```
 ..........................................................................................
 
+#### `GET` /api/parks/{id}
+
+#### Path Parameters
+No parameters.
+
+#### Example Query
+```
+https://localhost:5001/api/parks/3
+```
+
+#### Sample JSON Response
+`Status: 200 OK`
+```json
+{
+    "parkId": 3,
+    "name": "Cape Kiwanda",
+    "location": "Oregon",
+    "description": "This sandstone headland just north of Pacific City offers one of the best viewpoints on the coast for witnessing the ocean's power. The landmark is one of three along the Three Capes Scenic Route (along with Cape Meares and Cape Lookout).",
+    "category": "State Park"
+}
+```
+..........................................................................................
 ### Groups
 Access information about messages board groups, in which messages are posted.
 
