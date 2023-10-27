@@ -126,11 +126,6 @@ public class ParksController : ControllerBase
     // Get the total number of Parks currently in database.
     int count = query.Count();
 
-    // if (count == 0)
-    // {
-    //   return NotFound();
-    // }
-
     // Generate a random number that is >= 0 and < number of parks.
     int index = new Random().Next(count);
     // Skip the random number of elements in the database and grab the 
