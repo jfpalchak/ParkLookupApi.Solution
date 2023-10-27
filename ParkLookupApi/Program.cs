@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using ParkLookupApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<ParkLookupApiApiContext>(
+builder.Services.AddDbContext<ParkLookupApiContext>(
                   dbContextOptions => dbContextOptions
                     .UseMySql(
                       builder.Configuration["ConnectionStrings:DefaultConnection"],
