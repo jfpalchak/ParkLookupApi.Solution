@@ -328,16 +328,17 @@ https://localhost:5000/api/parks/1
 Access information on available State and/or National Parks.
 
 #### HTTP Request
-```
-GET /api/parks
-POST /api/parks
-GET /api/parks/{id}
-PUT /api/parks/{id}
-DELETE /api/parks/{id}
+|        |                                                           |
+|  :---: |                      :---                                 |
+| GET    | <a href="#-GET-/api/parks"> /api/parks </a>               |
+| POST   | <a href="#-POST-/api/parks"> /api/parks </a>              |  
+| GET    | <a href="#-GET-/api/parks/{id}"> /api/parks/{id} </a>     |
+| PUT    | <a href="#-PUT-/api/parks/{id}"> /api/parks/{id} </a>     |
+| DELETE | <a href="#-DELETE-/api/parks/{id}"> /api/parks/{id} </a>  |
+|        |                                                           |
+| GET    | <a href="#-GET-/api/parks/random"> /api/parks/random </a> |
+| GET    | <a href="#-GET-/api/parks/search"> /api/parks/search </a> |
 
-GET /api/parks/random
-GET /api/parks/search
-```
 ..........................................................................................
 
 #### `GET` /api/parks
@@ -353,7 +354,7 @@ GET /api/parks/search
 https://localhost:5001/api/parks?category=State&location=Oregon
 ```
 
-#### Sample JSON Response
+#### Sample Successful JSON Response
 `Status: 200 OK`
 ```json
 {
@@ -385,7 +386,7 @@ https://localhost:5001/api/parks
 }
 ```
 
-#### Sample JSON Response
+#### Sample Successful JSON Response
 `Status: 201 Created`
 ```json
 {
@@ -401,14 +402,17 @@ https://localhost:5001/api/parks
 #### `GET` /api/parks/{id}
 
 #### Path Parameters
-No parameters.
+| Parameter | Type | Default | Required | Description |
+| :---: | :---: | :---: | :---: | --- |
+| id | int | none | true | Specify the desired Park according to the given Park ID. |
+
 
 #### Example Query
 ```
 https://localhost:5001/api/parks/3
 ```
 
-#### Sample JSON Response
+#### Sample Successful JSON Response
 `Status: 200 OK`
 ```json
 {
@@ -420,64 +424,117 @@ https://localhost:5001/api/parks/3
 }
 ```
 ..........................................................................................
-### Groups
-Access information about messages board groups, in which messages are posted.
 
-### Notes
-The GET endpoint for `groups/{id}/messages` includes pagination by default. Users may override pagination defaults by including new search parameters.
-
-#### HTTP Request
-```
-GET /api/groups
-GET /api/groups/{id}
-GET /api/groups/{id}/messages
-GET /api/groups/{id}/messages/{messageId}
-POST /api/groups/{id}/messages
-DELETE /api/groups/{id}
-```
+#### `PUT` /api/parks/{id}
+Authenticated users, while including their Token in the authorization header of the request, may `PUT` updates for Park entries in the database when using the following format:
 
 #### Path Parameters
 | Parameter | Type | Default | Required | Description |
 | :---: | :---: | :---: | :---: | --- |
-| pageNumber | int | 1 | false | Specifies which element in the response the pageSize limit should start counting from. |
-| pageSize | int | 10 | false | Returns the specified number of elements per response; default is 10 elements. |
+| id | int | none | true | Specify the desired Park according to the given Park ID. |
 
 #### Example Query
 ```
-https://localhost:5000/api/groups/1/messages??pageNumber=1&pageSize=2
+https://localhost:5001/api/parks/8
+```
+#### Sample JSON Request Body
+```json
+{
+  "parkId": 8,
+  "name": "NEW Park Name",
+  "location": "State",
+  "description": "Park Description",
+  "category": "State Park"
+}
+```
+> NOTE: When sending a `PUT` request, the Park's ID is _required_ in the body of the request.
+
+#### Sample Successful JSON Response
+`Status: 204 No Content`
+```json
+
 ```
 
-#### Sample JSON Response
+..........................................................................................
+
+#### `DELETE` /api/parks/{id}
+Authenticated users, while including their Token in the authorization header of the request, may `DELETE` specific Park entries in the database when using the following format:
+
+#### Path Parameters
+| Parameter | Type | Default | Required | Description |
+| :---: | :---: | :---: | :---: | --- |
+| id | int | none | true | Specify the desired Park according to the given Park ID. |
+
+#### Example Query
 ```
+https://localhost:5001/api/parks/8
+```
+
+#### Sample Successful JSON Response
+`Status: 204 No Content`
+```json
+
+```
+
+..........................................................................................
+
+#### `GET` /api/parks/random
+Any user may access the `Random` endpoint of the API. This endpoint returns a single random Park entry from the database.
+
+#### Path Parameters
+No parameters.
+
+#### Example Query
+```
+https://localhost:5001/api/parks/random
+```
+
+#### Sample Successful JSON Response
+`Status: 204 No Content`
+```json
 {
-    "pageNumber": 1,
-    "pageSize": 2,
-    "firstPage": "https://localhost:5001/api/groups/1/messages?pageNumber=1&pageSize=2",
-    "lastPage": "https://localhost:5001/api/groups/1/messages?pageNumber=2&pageSize=2",
-    "totalPages": 2,
-    "totalRecords": 3,
-    "nextPage": "https://localhost:5001/api/groups/1/messages?pageNumber=2&pageSize=2",
-    "previousPage": null,
-    "data": [
-        {
-            "messageId": 1,
-            "text": "This new Spider-Man game looks awesome!",
-            "date": "2022-12-08T08:15:00",
-            "groupId": 1,
-            "userId": "def"
-        },
-        {
-            "messageId": 4,
-            "text": "Testing a post with tokens.",
-            "date": "2023-10-25T14:16:54.29078",
-            "groupId": 1,
-            "userId": "abc"
-        }
-    ],
-    "succeeded": true,
-    "errors": null,
-    "message": null
+  "parkId": 6,
+  "name": "A Park",
+  "location": "State",
+  "description": "This is a State Park!",
+  "category": "State Park"
 }
+```
+
+..........................................................................................
+
+#### `GET` /api/parks/search
+Any user may access the `Search` endpoint of the API. This endpoint returns a list of Park results that match the content of the user's search parameter.
+
+#### Path Parameters
+| Parameter | Type | Default | Required | Description |
+| :---: | :---: | :---: | :---: | --- |
+| searchString | string | none | false | Returns a list of Park results that contains the content of the searchString in either their Name, Location, or Category. |
+
+#### Example Query
+```
+https://localhost:5001/api/parks/search?searchString=State
+```
+
+#### Sample Successful JSON Response
+`Status: 200 OK`
+```json
+[
+    {
+        "parkId": 3,
+        "name": "Cape Kiwanda",
+        "location": "Oregon",
+        "description": "This sandstone headland just north of Pacific City offers one of the best viewpoints on the coast for witnessing the ocean's power. The landmark is one of three along the Three Capes Scenic Route (along with Cape Meares and Cape Lookout).",
+        "category": "State Park"
+    },
+    {
+        "parkId": 6,
+        "name": "A Park",
+        "location": "Somewhere",
+        "description": "This is a park, too!",
+        "category": "State Park"
+    }
+]
 ```
 
 ------------------------------
