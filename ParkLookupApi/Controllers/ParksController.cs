@@ -123,10 +123,11 @@ public class ParksController : ControllerBase
     // Get the total number of Parks currently in database.
     int count = query.Count();
 
-    if (count == 0)
-    {
-      return NotFound();
-    }
+    // if (count == 0)
+    // {
+    //   return NotFound();
+    // }
+    
     // Generate a random number that is >= 0 and < number of parks.
     int index = new Random().Next(count);
     // Skip the random number of elements in the database and grab the 
@@ -134,10 +135,20 @@ public class ParksController : ControllerBase
   }
 
   // GET: api/parks/search
-  // [HttpGet]
-  // public async Task<ActionResult<IEnumerable<Park>>> Search([FromQuery] string searchString)
-  // {
+  [HttpGet("search")]
+  public async Task<ActionResult<IEnumerable<Park>>> Search([FromQuery] string searchString)
+  {
+    IQueryable<Park> query = _db.Parks.AsQueryable();
 
-  // }
+    if (!String.IsNullOrEmpty(searchString))
+    {
+      query = query.Where(p => p.Name.Contains(searchString) 
+                            || p.Location.Contains(searchString) 
+                            || p.Category.Contains(searchString)
+      );
+    }
+
+    return await query.ToListAsync();
+  }
 
 }
