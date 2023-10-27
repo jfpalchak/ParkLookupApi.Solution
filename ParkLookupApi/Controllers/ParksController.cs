@@ -115,5 +115,29 @@ public class ParksController : ControllerBase
     return NoContent();
   }
 
+  // GET: api/parks/random
+  [HttpGet("random")]
+  public async Task<ActionResult<Park>> Random()
+  {
+    IQueryable<Park> query = _db.Parks.AsQueryable();
+    // Get the total number of Parks currently in database.
+    int count = query.Count();
+
+    if (count == 0)
+    {
+      return NotFound();
+    }
+    // Generate a random number that is >= 0 and < number of parks.
+    int index = new Random().Next(count);
+    // Skip the random number of elements in the database and grab the 
+    return await query.Skip(index).FirstOrDefaultAsync();
+  }
+
+  // GET: api/parks/search
+  // [HttpGet]
+  // public async Task<ActionResult<IEnumerable<Park>>> Search([FromQuery] string searchString)
+  // {
+
+  // }
 
 }
