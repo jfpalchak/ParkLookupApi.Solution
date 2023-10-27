@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ParkLookupApi.Models;
+using ParkLookupApi.Filters;
+using ParkLookupApi.Helpers;
+using ParkLookupApi.Wrappers;
 
 namespace ParkLookupApi.Controllers;
 
@@ -21,9 +24,10 @@ public class ParksController : ControllerBase
 
   // GET: api/parks/
   [HttpGet]
-  public async Task<ActionResult<IEnumerable<Park>>> GetAll([FromQuery] string category, [FromQuery] string location)
+  public async Task<IActionResult> GetAll([FromQuery] string category, [FromQuery] string location, [FromQuery] PaginationFilter pageFilter)
   {
     IQueryable<Park> query = _db.Parks.AsQueryable();
+    // PaginationFilter pageFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
 
     if (category != null)
     {
@@ -35,7 +39,9 @@ public class ParksController : ControllerBase
       query = query.Where(p => p.Location.Contains(location));
     }
 
-    return await query.ToListAsync();
+    PagedResponse<List<Park>> pagedResponse = await PaginationHelper.CreateAsync<Park>(query, pageFilter.PageNumber, pageFilter.PageSize);
+
+    return Ok(pagedResponse);
   }
 
   // GET: api/parks/{id}
