@@ -21,9 +21,19 @@ public class ParksController : ControllerBase
 
   // GET: api/parks/
   [HttpGet]
-  public async Task<ActionResult<IEnumerable<Park>>> Get()
+  public async Task<ActionResult<IEnumerable<Park>>> GetAll([FromQuery] string category, [FromQuery] string location)
   {
     IQueryable<Park> query = _db.Parks.AsQueryable();
+
+    if (category != null)
+    {
+      query = query.Where(p => p.Category.Contains(category));
+    }
+
+    if (location != null)
+    {
+      query = query.Where(p => p.Location.Contains(location));
+    }
 
     return await query.ToListAsync();
   }
