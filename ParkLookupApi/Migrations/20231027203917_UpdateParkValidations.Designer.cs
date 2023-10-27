@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ParkLookupApi.Models;
 
@@ -10,9 +11,10 @@ using ParkLookupApi.Models;
 namespace ParkLookupApi.Migrations
 {
     [DbContext(typeof(ParkLookupApiContext))]
-    partial class ParkLookupApiContextModelSnapshot : ModelSnapshot
+    [Migration("20231027203917_UpdateParkValidations")]
+    partial class UpdateParkValidations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
