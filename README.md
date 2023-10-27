@@ -19,10 +19,10 @@
     </p>
     <!-- Project Shields -->
     <p align="center">
-        <a href="https://github.com/jfpalchak/ParkLookupApi.Solution/graphs/contributors">
+        <!-- <a href="https://github.com/jfpalchak/ParkLookupApi.Solution/graphs/contributors">
             <img src="https://img.shields.io/github/contributors/jfpalchak/ParkLookupApi.Solution.svg?style=plastic">
         </a>
-        &nbsp;
+        &nbsp; -->
         <a href="https://github.com/jfpalchak/ParkLookupApi.Solution/stargazers">
             <img src="https://img.shields.io/github/stars/jfpalchak/ParkLookupApi.Solution.svg?color=yellow&style=plastic">
         </a>
@@ -63,7 +63,7 @@
     * <a href="#-prerequisites">Prerequisites</a>
     * <a href="#-setup-and-use">Setup and Use</a>
 * <a href="#-api-documentation">API Documentation</a>
-    * <a href=authentication-authorization-and-using-the-json-web-token">User Authentication & Authorization</a>
+    * <a href="authentication-authorization-and-using-the-json-web-token">User Authentication & Authorization</a>
     * <a href="api-endpoints">API Endpoints</a>
 * <a href="#-contributors">Auxiliary</a>
     * <a href="#-contributors">Contributors</a>
@@ -106,10 +106,12 @@ Authenticated users have access to `POST`, `PUT`, and `DELETE` functionality thr
 ### 📋 Prerequisites
 
 #### Install .NET Core
-* On macOS Mojave or later
-  * [Click here](https://dotnet.microsoft.com/download/thank-you/dotnet-sdk-2.2.106-macos-x64-installer) to download the .NET Core SDK from Microsoft Corp for macOS.
-* On Windows 10 x64 or later
-  * [Click here](https://dotnet.microsoft.com/download/thank-you/dotnet-sdk-2.2.203-windows-x64-installer) to download the 64-bit .NET Core SDK from Microsoft Corp for Windows.
+* On macOS with Apple Chip:
+  * [Click here](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.402-macos-arm64-installer) to download the .NET Core SDK from Microsoft Corp for macOS.
+* On macOs with Intel Chip:
+  * [Click here](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.402-macos-x64-installer) to download the .NET Core SDK from Microsoft Corp for macOS.
+* On Windows:
+  * [Click here](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.402-windows-x64-installer) to download the 64-bit .NET Core SDK from Microsoft Corp for Windows.
 
 #### Install dotnet script
  Enter the command ``dotnet tool install -g dotnet-script`` in Terminal for macOS or PowerShell for Windows.
