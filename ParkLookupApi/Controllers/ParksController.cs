@@ -24,10 +24,11 @@ public class ParksController : ControllerBase
 
   // GET: api/parks/
   [HttpGet]
-  public async Task<IActionResult> GetAll([FromQuery] string category, [FromQuery] string location, [FromQuery] PaginationFilter pageFilter)
+  public async Task<IActionResult> GetAll([FromQuery] string category, [FromQuery] string location, [FromQuery] PaginationFilter filter)
   {
     IQueryable<Park> query = _db.Parks.AsQueryable();
-    // PaginationFilter pageFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+    // Create another pagination filter, in case default parameters need to be reset.
+    PaginationFilter pageFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
 
     if (category != null)
     {
@@ -39,7 +40,7 @@ public class ParksController : ControllerBase
       query = query.Where(p => p.Location.Contains(location));
     }
 
-    PagedResponse<List<Park>> pagedResponse = await PaginationHelper.CreateAsync<Park>(query, pageFilter.PageNumber, pageFilter.PageSize);
+    PagedResponse<List<Park>> pagedResponse = await PaginationHelper.CreateAsync<Park>(query, pageFilter);
 
     return Ok(pagedResponse);
   }
