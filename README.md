@@ -63,8 +63,8 @@
     * <a href="#-prerequisites">Prerequisites</a>
     * <a href="#-setup-and-use">Setup and Use</a>
 * <a href="#-api-documentation">API Documentation</a>
-    * <a href="authentication-authorization-and-using-the-json-web-token">User Authentication & Authorization</a>
-    * <a href="api-endpoints">API Endpoints</a>
+    * <a href="#registering-an-account-and-using-the-json-web-token">User Authentication & Authorization</a>
+    * <a href="#api-endpoints">API Endpoints</a>
 * <a href="#-contributors">Auxiliary</a>
     * <a href="#-contributors">Contributors</a>
     * <a href="#-contact-and-support">Contact</a>
@@ -211,7 +211,7 @@ Explore the API endpoints in Postman or a browser. However, take note: you will 
 ### Using Swagger Documentation 
 To explore the ParkLookup Api with NSwag, launch the project using `dotnet run` with the Terminal or Powershell, and input the following URL into your browser: `http://localhost:5000/swagger`
 
-### Authentication, Authorization, and Using the JSON Web Token
+### Registering an Account and Using the JSON Web Token
 In order to be authorized to use the `POST`, `PUT`, and `DELETE` functionality of the API, please authenticate yourself through Postman:
 
 #### Registration
@@ -298,9 +298,13 @@ https://localhost:5000/api/groups/1/messages?pageNumber=1&pageSize=2
 
 To use the defaults, _do not include_ `pageNumber` and `pageSize`, or, set them equal to zero. -->
 
-<!-- ### Notes on Adding Search Parameters
-When adding more than one search parameter to an endpoint query, be sure to include an `&` between parameters, as shown above in the example query for pagination. -->
+### Notes on Adding Search Parameters
+When adding more than one search parameter to an endpoint query, be sure to include an `&` between search parameters, as shown in the following example:
 
+#### Example Query
+```
+https://localhost:5001/api/parks?category=State&location=Oregon
+```
 
 ------------------------------
 
