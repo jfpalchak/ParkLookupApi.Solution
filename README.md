@@ -239,13 +239,13 @@ https://localhost:5000/api/accounts/register
 }
 ```
 
-Here's example of what this should look like in Postman:
+Here's an example of what this should look like in Postman:
 
-<a href="https://ibb.co/h78d8zH"><img src="https://i.ibb.co/dWKpKY6/Register.png" alt="Register" border="0" /></a>
+<a href="https://ibb.co/h78d8zH"><img src="https://i.ibb.co/dWKpKY6/Register.png" alt="Register endpoint in Postman" border="0" /></a>
   
 Note that the password must contain at least six characters, one non-alphanumeric character, at least one digit lowercase letter, at least one uppercase letter and at least two unique characters. An invalid password will generate the following response from the API:  
 
-<a href="https://ibb.co/y00H6yS"><img src="https://i.ibb.co/VVVfgSm/Password-Req.png" alt="Password-Req" border="0" /></a>     
+<a href="https://ibb.co/y00H6yS"><img src="https://i.ibb.co/VVVfgSm/Password-Req.png" alt="Password-Req error in Postman" border="0" /></a>     
 
 #### Sign In
 Now that we've registered an account with our API, we'll need to authenticate our account and generate a JSON Web Token. We'll be using Postman again for this example. 
@@ -273,14 +273,19 @@ https://localhost:5000/api/accounts/signin
 }
 ```
 
-Here's example of what this should look like in Postman:
+Here's an example of what this should look like in Postman:
 
-<a href="https://ibb.co/4tP1HRT"><img src="https://i.ibb.co/JjCK9cc/SignIn.png" alt="SignIn" border="0" /></a>
+<a href="https://ibb.co/4tP1HRT"><img src="https://i.ibb.co/JjCK9cc/SignIn.png" alt="SignIn endpoint in Postman" border="0" /></a>
 
 #### Using the JSON Web Token
 Now let's copy that token from the response, and add it as an authorization header to our next request. Copy the token from the body, and click on the Authorization tab in Postman. On the 'Type', make sure that is set to 'Bearer Token', and then paste in the token in the field on the right.
 
+Here's an example of what that should look like in Postman:
+
+<a href="https://ibb.co/Wzt8kDx"><img src="https://i.ibb.co/2MNVv8n/using-jwt.png" alt="Using a JSON Web Token in Postman" border="0"></a>
+
 Until the Token expires, you should now have access to all endpoints requiring user authorization!
+
 
 <!-- ### Note on CORS
 CORS is a W3C standard that allows a server to relax the same-origin policy. It is not a security feature, CORS relaxes security. It allows a server to explicitly allow some cross-origin requests while rejecting others. An API is not safer by allowing CORS.
