@@ -234,13 +234,15 @@ https://localhost:5000/api/accounts/register
 }
 ```
 
+Here's example of what this should look like in Postman:
+
 <a href="https://ibb.co/h78d8zH"><img src="https://i.ibb.co/dWKpKY6/Register.png" alt="Register" border="0" /></a>
   
 Note that the password must contain at least six characters, one non-alphanumeric character, at least one digit lowercase letter, at least one uppercase letter and at least two unique characters. An invalid password will generate the following response from the API:  
 
 <a href="https://ibb.co/y00H6yS"><img src="https://i.ibb.co/VVVfgSm/Password-Req.png" alt="Password-Req" border="0" /></a>     
 
-#### SignIn
+#### Sign In
 Now that we've registered an account with our API, we'll need to authenticate our account and generate a JSON Web Token. We'll be using Postman again for this example. 
 
 Let's setup another `POST` request to the `accounts/signin` endpoint. Select the 'Body' tab, choose the 'raw' radio button, and select 'JSON' from the dropdown selection.
@@ -265,6 +267,9 @@ https://localhost:5000/api/accounts/signin
     "token": "xxxx.xxxx.xxxx"
 }
 ```
+
+Here's example of what this should look like in Postman:
+
 <a href="https://ibb.co/4tP1HRT"><img src="https://i.ibb.co/JjCK9cc/SignIn.png" alt="SignIn" border="0" /></a>
 
 #### Using the JSON Web Token
@@ -292,19 +297,28 @@ To use the defaults, _do not include_ `pageNumber` and `pageSize`, or, set them 
 When adding more than one search parameter to an endpoint query, be sure to include an `&` between parameters, as shown above in the example query for pagination. -->
 
 
-..........................................................................................
+------------------------------
 
 ### API Endpoints
 Base URL: `https://localhost:5000`
 
 #### HTTP Request Structure
-```
-GET /api/{component}
-POST /api/{component}
-GET /api/{component}/{id}
-PUT /api/{component}/{id}
-DELETE /api/{component}/{id}
-```
+
+| Parks    |                                                                        |
+|  :---:   |                      :---                                              |
+| GET      | <a href="#-`GET`-/api/parks"> /api/parks </a>                          |
+| POST     | <a href="#-`POST`-/api/parks"> /api/parks </a>                         |  
+| GET      | <a href="#-`GET`-/api/parks/{id}"> /api/parks/{id} </a>                |
+| PUT      | <a href="#-`PUT`-/api/parks/{id}"> /api/parks/{id} </a>                |
+| DELETE   | <a href="#-`DELETE`-/api/parks/{id}"> /api/parks/{id} </a>             |
+|          |                                                                        |
+| GET      | <a href="#-`GET`-/api/parks/random"> /api/parks/random </a>            |
+| GET      | <a href="#-`GET`-/api/parks/search"> /api/parks/search </a>            |
+
+| Accounts |                                                                        |
+|  :---:   |                      :---                                              |
+| POST     | <a href="#-Registration"> /api/accounts/register </a> |  
+| POST     | <a href="#-Sign-In"> /api/accounts/signin </a>     |  
 
 #### Example Query
 ```
@@ -324,20 +338,8 @@ https://localhost:5000/api/parks/1
 
 ..........................................................................................
 
-### Parks
+### Parks Controller
 Access information on available State and/or National Parks.
-
-#### HTTP Request
-|        |                                                           |
-|  :---: |                      :---                                 |
-| GET    | <a href="#-GET-/api/parks"> /api/parks </a>               |
-| POST   | <a href="#-POST-/api/parks"> /api/parks </a>              |  
-| GET    | <a href="#-GET-/api/parks/{id}"> /api/parks/{id} </a>     |
-| PUT    | <a href="#-PUT-/api/parks/{id}"> /api/parks/{id} </a>     |
-| DELETE | <a href="#-DELETE-/api/parks/{id}"> /api/parks/{id} </a>  |
-|        |                                                           |
-| GET    | <a href="#-GET-/api/parks/random"> /api/parks/random </a> |
-| GET    | <a href="#-GET-/api/parks/search"> /api/parks/search </a> |
 
 ..........................................................................................
 
