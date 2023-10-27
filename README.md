@@ -357,7 +357,7 @@ Any user may access this `GET` endpoint of the API. This endpoint returns a pagi
 
 **NOTE**: By default, this endpoint returns a list of 10 Parks per page, starting from page 1. To continue searching through the available parks, make sure to enter the `pageNumber` parameter to search through each consecutive page available. 
 
-The total number of pages available, as well as reference to the user's position in the available page index as noted by `hasPreviousPage` and `hasNextPage`, will be marked in the body of the initial JSON Response, as show below.
+The total number of pages available, `totalPages`, as well as reference to the user's position in the available page index as noted by `hasPreviousPage` and `hasNextPage`, will be marked in the body of the initial JSON Response, as show below.
 
 #### Path Parameters
 | Parameter | Type | Default | Required | Description |
@@ -536,12 +536,18 @@ https://localhost:5001/api/parks/random
 ..........................................................................................
 
 ### `GET` /api/parks/search
-Any user may access the `Search` endpoint of the API. This endpoint returns a list of Park results that match the content of the user's search parameter.
+Any user may access the `Search` endpoint of the API. This endpoint returns a paginated list of Park results that match the content of the user's search parameter.
+
+**NOTE**: By default, this endpoint returns a list of 10 Parks per page, starting from page 1. To continue searching through the query results, make sure to enter the `pageNumber` parameter to search through each consecutive page available. 
+
+The total number of pages available, `totalPages`, as well as reference to the user's position in the available page index as noted by `hasPreviousPage` and `hasNextPage`, will be marked in the body of the initial JSON Response, as show below.
 
 #### Path Parameters
 | Parameter | Type | Default | Required | Description |
 | :---: | :---: | :---: | :---: | --- |
 | searchString | string | none | false | Returns a list of Park results that contains the content of the searchString in either their Name, Location, or Category. |
+| pageNumber | int | 1 | false |  Specifies which element in the response the pageSize limit should start counting from; default is the initial index of available elements. |
+| pageSize | int | 10 | false |  Returns the specified number of elements per response; default is 10 elements.|
 
 #### Example Query
 ```
@@ -551,22 +557,32 @@ https://localhost:5001/api/parks/search?searchString=State
 #### Sample Successful JSON Response
 `Status: 200 OK`
 ```json
-[
-    {
-        "parkId": 3,
-        "name": "Cape Kiwanda",
-        "location": "Oregon",
-        "description": "This sandstone headland just north of Pacific City offers one of the best viewpoints on the coast for witnessing the ocean's power. The landmark is one of three along the Three Capes Scenic Route (along with Cape Meares and Cape Lookout).",
-        "category": "State Park"
-    },
-    {
-        "parkId": 6,
-        "name": "A Park",
-        "location": "Somewhere",
-        "description": "This is a park, too!",
-        "category": "State Park"
-    }
-]
+{
+    "pageNumber": 1,
+    "pageSize": 10,
+    "totalPages": 1,
+    "hasPreviousPage": false,
+    "hasNextPage": false,
+    "data": [
+        {
+            "parkId": 3,
+            "name": "Cape Kiwanda",
+            "location": "Oregon",
+            "description": "This sandstone headland just north of Pacific City offers one of the best viewpoints on the coast for witnessing the ocean's power. The landmark is one of three along the Three Capes Scenic Route (along with Cape Meares and Cape Lookout).",
+            "category": "State Park"
+        },
+        {
+            "parkId": 6,
+            "name": "A Park",
+            "location": "Somewhere",
+            "description": "This is a park, too!",
+            "category": "State Park"
+        }
+    ],
+    "succeeded": true,
+    "errors": null,
+    "message": null
+}
 ```
 
 ------------------------------
@@ -598,7 +614,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
 
-------------------------------
+<!-- ------------------------------
 
 ### 🌟 Acknowledgments
 
@@ -607,7 +623,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 #### [The Internet](https://webfoundation.org/)
 > "...the first thing that humanity has built that humanity doesn't understand..."
-> - Eric Schmidt, Google (Alphabet Inc.)
+> - Eric Schmidt, Google (Alphabet Inc.) -->
 
 <!-- ### 🌟 Resources Used
 
