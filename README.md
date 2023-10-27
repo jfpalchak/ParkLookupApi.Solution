@@ -298,7 +298,7 @@ To modify this, use the query parameters `pageSize` and `pageNumber` to alter th
 
 #### Example Query
 ```
-https://localhost:5000/api/groups/1/messages?pageNumber=1&pageSize=2
+https://localhost:5000/api/parks?pageNumber=1&pageSize=2
 ```
 
 To use the defaults, _do not include_ `pageNumber` or `pageSize`.
