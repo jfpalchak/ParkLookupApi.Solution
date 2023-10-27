@@ -132,11 +132,17 @@ public class ParksController : ControllerBase
     IQueryable<Park> query = _db.Parks.AsQueryable();
     // Get the total number of Parks currently in database.
     int count = query.Count();
-
     // Generate a random number that is >= 0 and < number of parks.
     int index = new Random().Next(count);
-    // Skip the random number of elements in the database and grab the 
-    return await query.Skip(index).FirstOrDefaultAsync();
+    // Skip the random number of elements in the database and grab whichever Park is next.
+    Park randomPark = await query.Skip(index).FirstOrDefaultAsync();
+
+    if (randomPark == null)
+    {
+      return NotFound();
+    }
+    
+    return randomPark;
   }
 
   // GET: api/parks/search

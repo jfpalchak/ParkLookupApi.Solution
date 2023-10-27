@@ -352,7 +352,7 @@ Access information on available State and/or National Parks.
 
 ..........................................................................................
 
-#### `GET` /api/parks
+### `GET` /api/parks
 Any user may access this `GET` endpoint of the API. This endpoint returns a paginated list of available Parks in the database.
 
 **NOTE**: By default, this endpoint returns a list of 10 Parks per page, starting from page 1. To continue searching through the available parks, make sure to enter the `pageNumber` parameter to search through each consecutive page available. 
@@ -397,7 +397,7 @@ https://localhost:5001/api/parks?category=State&location=Oregon
 }
 ```
 ..........................................................................................
-#### `POST` /api/parks
+### `POST` /api/parks
 Authenticated users, while including their Token in the authorization header of the request, may `POST` new Park entries to the database when using the following format:
 
 #### Path Parameters
@@ -430,7 +430,7 @@ https://localhost:5001/api/parks
 ```
 ..........................................................................................
 
-#### `GET` /api/parks/{id}
+### `GET` /api/parks/{id}
 Any user may access this `GET` endpoint of the API. This endpoint returns a single Park entry that matches the given Park ID. 
 
 #### Path Parameters
@@ -457,7 +457,7 @@ https://localhost:5001/api/parks/3
 ```
 ..........................................................................................
 
-#### `PUT` /api/parks/{id}
+### `PUT` /api/parks/{id}
 Authenticated users, while including their Token in the authorization header of the request, may `PUT` updates for Park entries in the database when using the following format:
 
 #### Path Parameters
@@ -489,7 +489,7 @@ https://localhost:5001/api/parks/8
 
 ..........................................................................................
 
-#### `DELETE` /api/parks/{id}
+### `DELETE` /api/parks/{id}
 Authenticated users, while including their Token in the authorization header of the request, may `DELETE` specific Park entries in the database when using the following format:
 
 #### Path Parameters
@@ -510,7 +510,7 @@ https://localhost:5001/api/parks/8
 
 ..........................................................................................
 
-#### `GET` /api/parks/random
+### `GET` /api/parks/random
 Any user may access the `Random` endpoint of the API. This endpoint returns a single random Park entry from the database.
 
 #### Path Parameters
@@ -535,7 +535,7 @@ https://localhost:5001/api/parks/random
 
 ..........................................................................................
 
-#### `GET` /api/parks/search
+### `GET` /api/parks/search
 Any user may access the `Search` endpoint of the API. This endpoint returns a list of Park results that match the content of the user's search parameter.
 
 #### Path Parameters
