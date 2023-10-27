@@ -53,6 +53,7 @@ public class ParksController : ControllerBase
   }
 
   // POST: api/parks
+  [Authorize]
   [HttpPost]
   public async Task<ActionResult<Park>> Post([FromBody] Park park)
   {
@@ -62,6 +63,7 @@ public class ParksController : ControllerBase
   }
 
   // PUT: api/parks/{id}
+  [Authorize]
   [HttpPut("{id}")]
   public async Task<IActionResult> Put(int id, [FromBody] Park park)
   {
@@ -99,6 +101,7 @@ public class ParksController : ControllerBase
   }
 
   // DELETE: api/parks/{id}
+  [Authorize]
   [HttpDelete("{id}")]
   public async Task<IActionResult> DeletePark(int id)
   {
@@ -127,7 +130,7 @@ public class ParksController : ControllerBase
     // {
     //   return NotFound();
     // }
-    
+
     // Generate a random number that is >= 0 and < number of parks.
     int index = new Random().Next(count);
     // Skip the random number of elements in the database and grab the 
