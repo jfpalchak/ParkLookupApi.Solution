@@ -27,8 +27,6 @@ public class ParksController : ControllerBase
   public async Task<IActionResult> GetAll([FromQuery] string category, [FromQuery] string location, [FromQuery] PaginationFilter filter)
   {
     IQueryable<Park> query = _db.Parks.AsQueryable();
-    // Create another pagination filter, in case default parameters need to be reset.
-    PaginationFilter pageFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
 
     if (category != null)
     {
@@ -40,6 +38,9 @@ public class ParksController : ControllerBase
       query = query.Where(p => p.Location.Contains(location));
     }
 
+    // Create another pagination filter, in case parameters need to be reset to default.
+    PaginationFilter pageFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+    // Paginate our query
     PagedResponse<List<Park>> pagedResponse = await PaginationHelper.CreateAsync<Park>(query, pageFilter);
 
     return Ok(pagedResponse);
@@ -141,13 +142,13 @@ public class ParksController : ControllerBase
     {
       return NotFound();
     }
-    
+
     return randomPark;
   }
 
   // GET: api/parks/search
   [HttpGet("search")]
-  public async Task<ActionResult<IEnumerable<Park>>> Search([FromQuery] string searchString)
+  public async Task<IActionResult> Search([FromQuery] string searchString, [FromQuery] PaginationFilter filter)
   {
     IQueryable<Park> query = _db.Parks.AsQueryable();
 
@@ -159,7 +160,10 @@ public class ParksController : ControllerBase
       );
     }
 
-    return await query.ToListAsync();
+    PaginationFilter pageFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+    PagedResponse<List<Park>> pagedResponse = await PaginationHelper.CreateAsync<Park>(query, pageFilter);
+
+    return Ok(pagedResponse);
   }
 
 }
