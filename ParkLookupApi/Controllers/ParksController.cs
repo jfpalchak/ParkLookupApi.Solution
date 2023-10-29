@@ -41,7 +41,7 @@ public class ParksController : ControllerBase
     // Create another pagination filter, in case parameters need to be reset to default.
     PaginationFilter pageFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
     // Paginate our query
-    PagedResponse<List<Park>> pagedResponse = await PaginationHelper.CreateAsync<Park>(query, pageFilter);
+    PagedResponse<List<Park>> pagedResponse = await PaginationHelper.CreateAsync(query, pageFilter);
 
     return Ok(pagedResponse);
   }
@@ -161,7 +161,7 @@ public class ParksController : ControllerBase
     }
 
     PaginationFilter pageFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
-    PagedResponse<List<Park>> pagedResponse = await PaginationHelper.CreateAsync<Park>(query, pageFilter);
+    PagedResponse<List<Park>> pagedResponse = await PaginationHelper.CreateAsync(query, pageFilter);
 
     return Ok(pagedResponse);
   }
